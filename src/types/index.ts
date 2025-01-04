@@ -1,19 +1,14 @@
 export interface Message {
-  id: number;
+  id: string;
   text: string;
-  sender: 'user' | 'bot';
-  isLoading?: boolean;
+  sender: 'user' | 'bot' | 'system';
+  timestamp: Date;
 }
 
 export type Language = 'en' | 'ja';
 
 export interface Translations {
-  chatHistory: string;
-  typing: string;
-  enterTopic: string;
-  typeMessage: string;
-  error: string;
-  welcomeTitle: string;
-  welcomeSubtitle: string;
-  startChat: string;
+  welcome: string;
+  description: string;
+  startButton: string;
 }

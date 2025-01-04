@@ -1,0 +1,16 @@
+{
+  "name": "enhanced_markdown",
+  "version": "1.0.0",
+  "description": "LoyaBuzz AI Assistant Presentation",
+  "type": "module",
+  "main": "convert.js",
+  "scripts": {
+    "convert": "node convert.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.33.2"
+  }
+}

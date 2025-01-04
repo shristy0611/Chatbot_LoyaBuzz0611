@@ -1,0 +1,133 @@
+{
+  "theme": {
+    "primary": "#2c3e50",
+    "secondary": "#3498db",
+    "accent": "#2ecc71",
+    "text": "#333333",
+    "background": "#ffffff"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "content": {
+        "title": "LoyaBuzz AI Assistant",
+        "subtitle": "Intelligent Customer Support Solution",
+        "background": "header.svg"
+      }
+    },
+    {
+      "type": "overview",
+      "content": {
+        "title": "Project Overview",
+        "points": [
+          "Current State: Manual Support",
+          "PoC Phase: Chrome Extension & Landing Page",
+          "Future: Full Website Integration"
+        ],
+        "image": "overview-diagram.svg"
+      }
+    },
+    {
+      "type": "two-column",
+      "content": {
+        "title": "Implementation Phases",
+        "left": {
+          "title": "Phase 1: PoC",
+          "points": [
+            "Chrome extension deployment",
+            "Landing page integration",
+            "Basic AI training"
+          ]
+        },
+        "right": {
+          "title": "Phase 2: Integration",
+          "points": [
+            "Website embedding",
+            "Enhanced AI model",
+            "Full feature set"
+          ]
+        }
+      }
+    },
+    {
+      "type": "diagram",
+      "content": {
+        "title": "Technical Architecture",
+        "image": "architecture.svg",
+        "caption": "System Components and Data Flow"
+      }
+    },
+    {
+      "type": "process",
+      "content": {
+        "title": "Data Processing Pipeline",
+        "steps": [
+          "Raw Data Collection",
+          "Data Cleaning",
+          "Quality Assurance",
+          "Model Training",
+          "Deployment"
+        ],
+        "image": "pipeline.svg"
+      }
+    },
+    {
+      "type": "demo",
+      "content": {
+        "title": "Live Demo",
+        "screenshot": "chat-interface.svg",
+        "points": [
+          "Natural language understanding",
+          "Context-aware responses",
+          "Real-time processing"
+        ]
+      }
+    },
+    {
+      "type": "investment",
+      "content": {
+        "title": "Investment & ROI",
+        "cost": "1500-2000 CAD",
+        "timeline": "2-3 weeks",
+        "benefits": [
+          "24/7 Customer support",
+          "Reduced support costs",
+          "Improved customer satisfaction"
+        ]
+      }
+    },
+    {
+      "type": "timeline",
+      "content": {
+        "title": "Project Timeline",
+        "phases": [
+          {
+            "name": "Setup",
+            "duration": "3 days"
+          },
+          {
+            "name": "Development",
+            "duration": "7 days"
+          },
+          {
+            "name": "Testing",
+            "duration": "4 days"
+          }
+        ]
+      }
+    },
+    {
+      "type": "next-steps",
+      "content": {
+        "title": "Next Steps",
+        "steps": [
+          "Agreement finalization",
+          "Data collection",
+          "Development kickoff",
+          "Testing & refinement",
+          "Deployment"
+        ]
+      }
+    }
+  ]
+} 

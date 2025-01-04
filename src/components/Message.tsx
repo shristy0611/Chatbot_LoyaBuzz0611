@@ -1,27 +1,38 @@
-import React from 'react';
 import { Message as MessageType } from '../types';
-import { Loader2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 interface MessageProps {
   message: MessageType;
 }
 
 export function Message({ message }: MessageProps) {
-  const isUser = message.sender === 'user';
-  
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
+    <div
+      className={`flex ${
+        message.sender === 'user' ? 'justify-end' : 'justify-start'
+      }`}
+    >
       <div
-        className={`max-w-[80%] p-3 rounded-lg ${
-          isUser
-            ? 'bg-blue-600 text-white rounded-br-none'
-            : 'bg-gray-200 text-gray-800 rounded-bl-none'
+        className={`max-w-[80%] rounded-lg p-3 ${
+          message.sender === 'user'
+            ? 'bg-blue-500 text-white'
+            : message.sender === 'system'
+            ? 'bg-gray-300 text-gray-700'
+            : 'bg-white text-gray-800'
         }`}
       >
-        <div className="flex items-center gap-2">
-          {message.isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+        <ReactMarkdown
+          components={{
+            p: ({ children }) => <p className="mb-2">{children}</p>,
+            code: ({ className, children }) => (
+              <code className={`${className} bg-gray-100 rounded px-1`}>
+                {children}
+              </code>
+            ),
+          }}
+        >
           {message.text}
-        </div>
+        </ReactMarkdown>
       </div>
     </div>
   );

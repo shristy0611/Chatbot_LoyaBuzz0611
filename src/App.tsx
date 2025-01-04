@@ -1,106 +1,98 @@
-import React, { useState } from 'react';
-import { ChatWindow } from './components/ChatWindow';
-import { ChatInput } from './components/ChatInput';
-import { WelcomeScreen } from './components/WelcomeScreen';
-import { AdvisorSelector } from './components/AdvisorSelector';
-import { callGeminiAPI } from './services/geminiApi';
+import { useState, useEffect } from 'react';
 import { Message } from './types';
-import { AdvisorType, advisors } from './types/advisors';
-import { 
-  detectLanguage, 
-  getLoadingMessage, 
-  getErrorMessage, 
-  getAdvisorChangeMessage 
-} from './utils/languageUtils';
+import { ChatWindow } from './components/ChatWindow';
+import { WelcomeScreen } from './components/WelcomeScreen';
+import { v4 as uuidv4 } from 'uuid';
 
-export default function App() {
-  const [message, setMessage] = useState('');
+const translations = {
+  welcome: "Welcome to LoyaBuzz AI Chat",
+  description: "I'm here to help you with any questions about LoyaBuzz's services and features.",
+  startButton: "Start Chat"
+};
+
+function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [showWelcome, setShowWelcome] = useState(true);
-  const [selectedAdvisor, setSelectedAdvisor] = useState<AdvisorType>('general');
-  const [userLanguage, setUserLanguage] = useState<'en' | 'ja'>('en');
 
-  const handleAdvisorChange = (newAdvisor: AdvisorType) => {
-    const advisor = advisors.find(a => a.id === newAdvisor);
-    if (!advisor) return;
+  useEffect(() => {
+    // Add initial system message
+    if (messages.length === 0) {
+      setMessages([
+        {
+          id: uuidv4(),
+          text: "Hello! I'm LoyaBuzz's AI Assistant. How can I help you today?",
+          sender: 'system',
+          timestamp: new Date()
+        }
+      ]);
+    }
+  }, []);
 
-    setSelectedAdvisor(newAdvisor);
-    setMessages([]);
-    
-    // Show advisor change message in current language
-    const advisorName = userLanguage === 'ja' ? advisor.nameJa : advisor.nameEn;
-    const changeMessage = getAdvisorChangeMessage(userLanguage, advisorName);
-    
-    setMessages([{
-      id: Date.now(),
-      text: changeMessage,
-      sender: 'system'
-    }]);
-  };
-
-  const handleSend = async () => {
-    if (!message.trim()) return;
-
-    // Detect language from current message independently
-    const currentLanguage = detectLanguage(message);
-    setUserLanguage(currentLanguage);
-
+  const handleSendMessage = async (text: string) => {
+    // Add user message
     const userMessage: Message = {
-      id: Date.now(),
-      text: message,
+      id: uuidv4(),
+      text,
       sender: 'user',
+      timestamp: new Date()
     };
-
-    const loadingMessage: Message = {
-      id: Date.now() + 1,
-      text: getLoadingMessage(currentLanguage),
-      sender: 'bot',
-      isLoading: true,
-    };
-
-    setMessages(prev => [...prev, userMessage, loadingMessage]);
-    setMessage('');
+    setMessages(prev => [...prev, userMessage]);
 
     try {
-      const advisor = advisors.find(a => a.id === selectedAdvisor);
-      if (!advisor) throw new Error('Advisor not found');
-      
-      const botResponse = await callGeminiAPI(advisor.systemPrompt, message);
-      
-      setMessages(prev => prev.map(msg => 
-        msg.id === loadingMessage.id
-          ? { ...msg, text: botResponse, isLoading: false }
-          : msg
-      ));
+      // Send to API
+      const response = await fetch('http://localhost:3000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: text,
+          context: {}
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      // Add bot response
+      const botMessage: Message = {
+        id: uuidv4(),
+        text: data.response,
+        sender: 'bot',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      setMessages(prev => prev.map(msg => 
-        msg.id === loadingMessage.id
-          ? { ...msg, text: getErrorMessage(currentLanguage), isLoading: false }
-          : msg
-      ));
+      console.error('Error:', error);
+      // Add error message
+      const errorMessage: Message = {
+        id: uuidv4(),
+        text: 'Sorry, I encountered an error. Please try again.',
+        sender: 'system',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
     }
   };
 
-  if (showWelcome) {
-    return (
-      <WelcomeScreen onStart={() => setShowWelcome(false)} />
-    );
-  }
-
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
-      <AdvisorSelector 
-        advisors={advisors}
-        selectedAdvisor={selectedAdvisor}
-        onSelect={handleAdvisorChange}
-        userLanguage={userLanguage}
-      />
-      <ChatWindow messages={messages} />
-      <ChatInput
-        message={message}
-        setMessage={setMessage}
-        onSend={handleSend}
-      />
+    <div className="h-screen bg-gray-100">
+      {showWelcome ? (
+        <WelcomeScreen 
+          translations={translations} 
+          onStart={() => setShowWelcome(false)} 
+        />
+      ) : (
+        <ChatWindow 
+          messages={messages} 
+          onSendMessage={handleSendMessage} 
+        />
+      )}
     </div>
   );
 }
+
+export default App;

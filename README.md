@@ -1,104 +1,92 @@
-# **Smart Agent**
+# LoyaBuzz AI Assistant 🤖
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Build Status](https://img.shields.io/badge/build-passing-green.svg)
+A smart chatbot designed to provide accurate information about LoyaBuzz's services and features.
 
-## **Table of Contents**
+## ✨ Features
 
-1. [Overview](#overview)
-2. [Our Vision](#our-vision)
-3. [Key Features](#key-features)
-4. [Benefits](#benefits)
-5. [Future Potential](#future-potential)
-6. [Why Choose Us](#why-choose-us)
-7. [Contact Information](#contact-information)
-8. [License](#license)
+### Core Functionality
+- ✅ Multi-agent system with specialized roles
+- ✅ Real-time web scraping for accurate information
+- ✅ Natural language processing
+- ✅ Contextual responses
+- ✅ Error handling and fallbacks
+- ❌ Chat history persistence
+-------------------------------------------------------------- As discussed on 01-03-2025
+- ❌ User session management
 
----
+### UI/UX
+- ✅ Modern, clean interface
+- ✅ Responsive design
+- ✅ Loading indicators
+- ✅ Message typing animations
+- ✅ Minimize/maximize functionality
+- ❌ Dark mode support
+- ❌ Custom theme options
 
-## **Overview**
+### AI Agents
+- ✅ General Assistant
+- ✅ Sales Assistant
+- ✅ Support Assistant
+- ✅ Marketing Assistant
+- ✅ Accurate response validation
+- ❌ Learning from user feedback
+- ❌ Personalization based on user history
 
-**Smart Agent** is a cutting-edge AI-powered communication platform designed to revolutionize business interactions in Japan. Built with seamless bilingual support (English and Japanese), our solution addresses the critical challenge of cross-cultural business communication by providing intelligent, context-aware conversational capabilities that adapt to user preferences and business needs.
+### Data Management
+- ✅ Real-time content updates
+- ✅ Web scraping cache
+- ❌ Response caching
+- ❌ User preferences storage
+- ❌ Analytics and insights
 
----
+## 🚀 Installation
 
-## **Our Vision**
+1. Download the latest `loyabuzz-ai-assistant.zip` from the shared google drive directory
+2. Unzip the file to a local directory
+3. Open Chrome and navigate to `chrome://extensions/`
+4. Enable "Developer mode" in the top right
+5. Click "Load unpacked" and select the unzipped directory
+6. The LoyaBuzz AI Assistant icon should appear in your Chrome toolbar
 
-At **Smart Agent**, we envision a future where language barriers no longer impede business growth and innovation in Japan. Our mission is to empower organizations with an intelligent communication tool that bridges cultural gaps, enhances understanding, and facilitates seamless interactions between English and Japanese speakers.
+### Chrome Extension
+1. The extension will automatically connect to the local server
+2. Click the LoyaBuzz icon in your toolbar to open the chat widget
+3. Start chatting with the AI assistant!
 
----
+## 🔄 Updates
 
-## **Key Features**
+### Recent Improvements
+- ✅ Enhanced response accuracy
+- ✅ Improved UI with modern styling
+- ✅ Better error handling
+- ✅ Web scraping optimization
+- ✅ Agent prompt refinement
 
-- **Bilingual Intelligence:** Automatically detects and responds in both English and Japanese, ensuring natural communication flow
-- **Specialized Business Advisors:** Multiple AI advisors with expertise in different business domains
-- **Real-Time Language Switching:** Seamlessly switch between English and Japanese without losing context
-- **Modern User Interface:** Clean, intuitive design that works across all devices
-- **Smart Context Management:** Maintains conversation context for more meaningful interactions
-- **Secure Communication:** Built with privacy and security in mind
+### Pending Enhancements
+- ❌ Implement chat history persistence
+- ❌ Add user authentication
+- ❌ Develop response caching system
+- ❌ Create analytics dashboard
+- ❌ Add customization options
+- ❌ Implement dark mode
+- ❌ Add user feedback system
+- ❌ Develop offline mode support
 
----
+## 🔒 Security
 
-## **Benefits**
+### Implemented
+- ✅ Secure API handling
+- ✅ Data validation
+- ✅ Error logging
+- ✅ Rate limiting
 
-**Smart Agent** delivers transformative advantages for businesses operating in Japan:
+### Pending
+- ❌ End-to-end encryption
+- ❌ User data protection
+- ❌ Advanced authentication
+- ❌ Security audit
 
-- **Enhanced Communication Efficiency:** Eliminate language barriers and reduce miscommunication risks
-- **Time and Cost Savings:** Reduce dependency on human translators and interpreters
-- **Improved Client Relations:** Better engage with international clients and partners
-- **Consistent Communication:** Maintain professional communication standards in both languages
-- **Increased Productivity:** Speed up cross-cultural business processes and decision-making
-- **Global Market Access:** Easily engage with both Japanese and English-speaking markets
 
----
+## 📝 License
 
-## **Future Potential**
-
-Smart Agent is positioned for continuous evolution and expansion:
-
-- **Advanced AI Integration:** Incorporate cutting-edge language models and AI capabilities
-- **Extended Language Support:** Potential expansion to support additional Asian languages
-- **Industry-Specific Solutions:** Develop specialized versions for finance, healthcare, and other sectors
-- **Enhanced Analytics:** Implement business intelligence features for communication insights
-- **API Integration:** Enable seamless integration with existing business systems
-- **Mobile Applications:** Develop dedicated mobile apps for on-the-go communication
-
----
-
-## **Why Choose Us**
-
-Selecting **Smart Agent** means partnering with innovation leaders in AI-powered business communication:
-
-- **Cultural Intelligence:** Deep understanding of Japanese and international business practices
-- **Technical Excellence:** Built with modern, scalable technologies
-- **User-Centric Design:** Intuitive interface that requires minimal training
-- **Continuous Innovation:** Regular updates and improvements based on user feedback
-- **Dedicated Support:** Committed to providing exceptional customer service
-
----
-
-## **Contact Information**
-
-We're excited to help transform your business communication. Reach out to us:
-
-- **Phone:** +81 (0)80 5735 1437
-- **Contact Persons:**
-  - **Shristy Powdel Jaishi**
-    - Email: [powdeljaishishristy@gmail.com](mailto:powdeljaishishristy@gmail.com)
-  - **Shivashish Jaishy**
-    - Email: [jaishyshivashish@gmail.com](mailto:jaishyshivashish@gmail.com)
-- **Website:** [shristyverse.site](https://shristyverse.site)
-
----
-
-## **License**
-
-This project is licensed under the MIT License.
-
-Copyright (c) 2024 Smart Agent
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+This project is proprietary and confidential. All rights reserved by Shristyverse 2025.

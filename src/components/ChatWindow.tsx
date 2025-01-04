@@ -1,85 +1,78 @@
-import React, { useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Message } from '../types';
 import ReactMarkdown from 'react-markdown';
-import { Loader2 } from 'lucide-react';
 
 interface ChatWindowProps {
   messages: Message[];
+  onSendMessage: (text: string) => Promise<void>;
 }
 
-export function ChatWindow({ messages }: ChatWindowProps) {
-  const bottomRef = useRef<HTMLDivElement>(null);
+export function ChatWindow({ messages, onSendMessage }: ChatWindowProps) {
+  const [inputText, setInputText] = useState('');
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputText.trim()) return;
+
+    await onSendMessage(inputText.trim());
+    setInputText('');
+  };
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4">
-      {messages.map((message) => (
-        <div
-          key={message.id}
-          className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-        >
+    <div className="flex flex-col h-full">
+      {/* Chat messages */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {messages.map((message) => (
           <div
-            className={`max-w-[80%] rounded-lg p-4 ${
-              message.sender === 'user'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-900'
+            key={message.id}
+            className={`flex ${
+              message.sender === 'user' ? 'justify-end' : 'justify-start'
             }`}
           >
-            {message.isLoading ? (
-              <div className="flex items-center gap-2">
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span>{message.text}</span>
-              </div>
-            ) : (
+            <div
+              className={`max-w-[80%] rounded-lg p-3 ${
+                message.sender === 'user'
+                  ? 'bg-blue-500 text-white'
+                  : message.sender === 'system'
+                  ? 'bg-gray-300 text-gray-700'
+                  : 'bg-white text-gray-800'
+              }`}
+            >
               <ReactMarkdown
-                className="prose prose-sm max-w-none dark:prose-invert"
                 components={{
-                  // Style code blocks
-                  code: ({ node, inline, className, children, ...props }) => {
-                    const match = /language-(\w+)/.exec(className || '');
-                    return !inline ? (
-                      <pre className="bg-gray-800 text-gray-100 rounded p-2 overflow-x-auto">
-                        <code className={className} {...props}>
-                          {children}
-                        </code>
-                      </pre>
-                    ) : (
-                      <code className="bg-gray-200 text-gray-800 rounded px-1" {...props}>
-                        {children}
-                      </code>
-                    );
-                  },
-                  // Style tables
-                  table: ({ children }) => (
-                    <div className="overflow-x-auto">
-                      <table className="min-w-full divide-y divide-gray-300">
-                        {children}
-                      </table>
-                    </div>
-                  ),
-                  // Style lists
-                  ul: ({ children }) => (
-                    <ul className="list-disc pl-4 space-y-1">
+                  p: ({ children }) => <p className="mb-2">{children}</p>,
+                  code: ({ className, children }) => (
+                    <code className={`${className} bg-gray-100 rounded px-1`}>
                       {children}
-                    </ul>
-                  ),
-                  ol: ({ children }) => (
-                    <ol className="list-decimal pl-4 space-y-1">
-                      {children}
-                    </ol>
+                    </code>
                   ),
                 }}
               >
                 {message.text}
               </ReactMarkdown>
-            )}
+            </div>
           </div>
+        ))}
+      </div>
+
+      {/* Input form */}
+      <form onSubmit={handleSubmit} className="p-4 border-t">
+        <div className="flex space-x-2">
+          <input
+            type="text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder="Type your message..."
+            className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Send
+          </button>
         </div>
-      ))}
-      <div ref={bottomRef} />
+      </form>
     </div>
   );
 }
